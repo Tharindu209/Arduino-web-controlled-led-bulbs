@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Lights</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+    <div class='interItems'>
+		<h1>Control an LEDS with Arduino using Python</h1>
+        <div class='interactiveButtons'>
+            <form action='#' method='POST'>
+                <select id="colorSelect" name="color">
+					<option value="select">Select a Bulb Colour</option>
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                </select>
+                <button class='onButton' onclick="ledOn()">Turn On</button>
+                <button class='offButton' onclick="ledOff()">Turn Off</button>
+                <input type="hidden" id="action" name="action" value="">
+				<button class='disconnectButton' onclick="disconnect()">Disconnect</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function ledOn() {
+            const color = document.getElementById('colorSelect').value;
+            document.getElementById('action').value = `on-${color}`;
+            console.log(`Turning on ${color} LED`);
+        }
+
+        function ledOff() {
+            const color = document.getElementById('colorSelect').value;
+            document.getElementById('action').value = `off-${color}`;
+            console.log(`Turning off ${color} LED`);
+        }
+
+        function disconnect() {
+            document.getElementById('action').value = 'dis';
+            console.log('Disconnecting from Arduino');
+        }
+    </script>
+</body>
+</html>
